@@ -1,35 +1,41 @@
 <!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
         <title></title>
     </head>
     <body>
+       
         <?php
-        $p ="";
+        session_start();
         
-        echo count($_GET);
-        if (count($_GET))
-        {
-           if (array_key_exists("p",$_GET))
-           {
-               $p = $_GET["p"];
-           }
-        }
-       // echo 'testing';
-        // $_POST = array();
-        // $_GET = array();
-        //$_GET["page"]= "index";
-        //$_GET["title"] = "hello";
-        //$key => hello";
-         //echo $_GET ['page'], "<br />", $_GET["title"], "<br />", $_GET["p"];
-         echo "<h1>", $_GET["page"], "</h1>";
-         if(strlen($p) > 0 )
-         {
-             echo "<p>", $p, "</p>";
+        include 'validator.php';
+        include 'Config.php';
+ 
+         $testEmail = "";
+         
+         if ( Validator::emailIsValid($testEmail) ) {
+             echo "email is valid";
+         } else {
+             echo "email is <strong>NOT</strong> valid";
          }
-         echo "<p>", $_GET["p"], "</p>";
+         
+        $dbh = new PDO(Config::DB_DNS ,Config::DB_USER,Config::DB_PASSWORD);
+        $stmt = $dbh->prepare('SELECT fullname, email, comments FROM week3');
+        $stmt->execute();
+        
+         
+        $result = $stmt->fetchAll();
+         
+        print_r($result);
+        
+        echo "<h1>",$_SESSION["counter"],"</h1>";
+        
         ?>
     </body>
 </html>
-
