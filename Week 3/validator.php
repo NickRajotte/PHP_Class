@@ -9,25 +9,34 @@
 /**
  * Description of validator
  *
- * @author NickRaj
+ * @author GFORTI
  */
-class validator {
+class Validator {
     //put your code here
     
-   public function _construct() {
-       
-   }
-   function validateFullName( $fullname ) {
-       if ( is_string($fullname)&& !empty($fullname) ) {
-           return true;
-       }
-       return false;
-   }
-   
-   function validateEmail( $email ) {
-       if ( is_string($email)&& !empty($email) ) {
-           return true;
-       }
-       return false;
-   }
+    
+    public function __construct() {
+        
+    }
+    
+   public function isFullNameValid( $fullname ) {
+        
+        if ( is_string($fullname) && !empty($fullname) ) {
+            return true;
+        }
+        
+        return false;  
+    }
+    
+   public function isEmailValid( $email ) {
+        
+        if ( is_string($email) && !empty($email) ) {
+            return true;
+        }
+        
+        return false; 
+        
+    }
+    
+    
 }

@@ -16,6 +16,7 @@ and open the template in the editor.
         session_regenerate_id(true);
         
         $token = uniqid();
+        //will avoid session hijacking
         if ( !isset($_SESSION["token"]) )
         {
             $_SESSION["token"] = $token;
@@ -28,7 +29,18 @@ and open the template in the editor.
              exit();
          }
         }
+        //this will help avoid bots, by using hidden input fields
+        //will timeout a session if hidden inputs have information
+        if (!empty($_POST["email"]) ) 
+        {
+            $_SESSION["wait"] = Config::MAX_SESSION_TIME;
+        }
         
+        if ( isset($_SESSION["wait"]) && $_SESSION["wait"] > (time()- Config::MAX_SESSION_TIME))
+        {
+            echo "Please Come Back";
+            exit();
+        }
         
         
         
@@ -39,6 +51,7 @@ and open the template in the editor.
             password: <input type="password" name="password" /><br />
           
             <input type="hidden" name="token" value="<?php echo $token; ?>" />
+            <input type="hidden" name="email" value="" />
             <input type="submit" value="Submit" />
             
             
