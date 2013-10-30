@@ -9,15 +9,15 @@
 /**
  * Description of Config
  *
- * @author NickRaj
+ * @author GFORTI
  */
 class Config {
     //put your code here
-    const DB_DNS = "mysql:host=localhost;port=3306;dbname=php.lab",
-          DB_USER = "root",
-          DB_Password = "",
-          MAX_SESSION_TIME = 30;
-}
     
-    ?>
+    const   DB_DNS = "mysql:host=localhost;port=3306;dbname=phplab",
+            DB_USER  = "root",
+            DB_PASSWORD  = "",
+            MAX_SESSION_TIME = 3;
 }
+
+?>

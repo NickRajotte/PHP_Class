@@ -10,31 +10,32 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        
-        include 'Validator.php';
-        include 'Config.php';
-        include 'Session.php';
-        $testEmail = " ";
-                
-                    if (Validator::emailIsValid($testEmail))
-                        {
-                        echo "Email is Valid";
-                        
-                        }
-                    else {
-                        echo "email is <strong>Not</strong> valid";
-                    }
-                    
-      /* $dbh = new PDO(Config::DB_DNS,Config::DB_USER,Config::DB_PASSWORD);
-       $stmt = $dbh->prepare('SELECT * FROM week3');
-       $stmt->execute();
        
-       $result = $stmt->fetchAll();*/
-     //  print_r($result);
-       // echo"<h1>",$_SESSION["counter"], "</h1>";
-       ?>
+        <?php
+        session_start();
         
-      
+        include 'validator.php';
+        include 'Config.php';
+ 
+         $testEmail = "";
+         
+         if ( Validator::emailIsValid($testEmail) ) {
+             echo "email is valid";
+         } else {
+             echo "email is <strong>NOT</strong> valid";
+         }
+         
+        $dbh = new PDO(Config::DB_DNS ,Config::DB_USER,Config::DB_PASSWORD);
+        $stmt = $dbh->prepare('SELECT fullname, email, comments FROM week3');
+        $stmt->execute();
+        
+         
+        $result = $stmt->fetchAll();
+         
+        print_r($result);
+        
+        echo "<h1>",$_SESSION["counter"],"</h1>";
+        
+        ?>
     </body>
 </html>
