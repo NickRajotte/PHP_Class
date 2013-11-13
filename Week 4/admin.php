@@ -17,6 +17,14 @@ and open the template in the editor.
         if ( empty($_SESSION["isLoggedIn"]) ) {
             header("Location:login.php");
         }
+        
+        if(isset($_GET['log']) && ($_GET['log']=='out')){
+        //if the user logged out, delete any SESSION variables
+	session_destroy();
+	
+        //then redirect to login page
+	header('location:index.php');
+}//end log out
         /*
          * Have user logout
          * use $_GET super global
