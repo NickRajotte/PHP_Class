@@ -123,3 +123,46 @@ $str = "\n";
 if (ord($str) == 10) {
     echo "The first character of \$str is a line feed.\n";
 }
+
+
+//Array Count 
+<?php
+$array = array(1, "hello", 1, "world", "hello");
+print_r(array_count_values($array));
+?>
+
+//Array Flip
+<?php
+$trans = array_flip($trans);
+$original = strtr($str, $trans);
+?>
+//Array Key
+<?php
+$search_array = array('first' => 1, 'second' => 4);
+if (array_key_exists('first', $search_array)) {
+    echo "The 'first' element is in the array";
+}
+?>
+
+//Array Map
+<?php
+function cube($n)
+{
+    return($n * $n * $n);
+}
+
+$a = array(1, 2, 3, 4, 5);
+$b = array_map("cube", $a);
+print_r($b);
+?>
+
+//creating HTML Table
+
+<?php
+require_once 'HTML/Table.php';
+
+$attrs = array('width' => '600');
+$table = new HTML_Table($attrs);
+$table->setAutoGrow(true);
+$table->setAutoFill('n/a');
+?>
