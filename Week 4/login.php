@@ -15,9 +15,13 @@ and open the template in the editor.
         session_start();        
         session_regenerate_id(true);
         
-        /*
-         * If user is logged in redirect to admin page.
-         */
+       if ($_SESSION["isLoggedIn"])
+       {
+               header("Location:admin.php");
+            } else {
+                
+                echo "<p>Username or password is not correct</p>";
+            }
         
         include 'Config.php';
         include 'validator.php';
