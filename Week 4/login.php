@@ -15,14 +15,14 @@ and open the template in the editor.
         session_start();        
         session_regenerate_id(true);
         
-       if ($_SESSION["isLoggedIn"])
-       {
-               header("Location:admin.php");
-            } else {
-                
-                echo "<p>Username or password is not correct</p>";
-            }
+        /*
+         * If user is logged in redirect to admin page.
+         */
+        if($_SESSION["isLoggedIn"] == true){
+            header("Location:admin.php");
+        }
         
+        /*inputting the classes Config and Validator*/
         include 'Config.php';
         include 'validator.php';
         
@@ -56,10 +56,10 @@ and open the template in the editor.
         
         
         $username = ( isset($_POST["username"]) ? $_POST["username"] : "" );
-        $password = ( isset($_POST["password"]) ? $_POST["password"] : "" );
-        
-      
-        
+        $password = ( isset($_POST["password"]) ? $_POST["password"] : "" );     
+        /*if statement is checking for username and password to be present and if passes the validation and if so it is 
+         redirected to the admin page 
+         */
             if ( !empty($username) 
                     && !empty($password) 
                     && Validator::loginIsValid($username,$password )
@@ -67,15 +67,15 @@ and open the template in the editor.
                $_SESSION["isLoggedIn"] = true;
                header("Location:admin.php");
             } else {
-                /*
-                 * should only show message if a post has been made
-                 */
-                echo "<p>Username or password is not correct</p>";
-            }
-        
+              
+              
+                if (count($_POST)){
+                    echo "<p>Username or password is not correct</p>";
+                 }
+           }
         ?>
         
-        
+       
         <form name="mainform" action="login.php" method="post">
             
             username: <input type="text" name="username" /><br />
