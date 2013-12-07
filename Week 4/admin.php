@@ -18,23 +18,17 @@ and open the template in the editor.
             header("Location:login.php");
         }
         
-        if(isset($_GET['log']) && ($_GET['log']=='out')){
-        //if the user logged out, delete any SESSION variables
-	session_destroy();
-	
-        //then redirect to login page
-	header('location:index.php');
-}//end log out
-        /*
-         * Have user logout
-         * use $_GET super global
-         * distroy the session and send to login page
-         */
+        
+ if( count($_GET) && $_GET["logout"] == 1){
+                session_destroy();
+                header("Location:login.php");
+            } 
+
         ?>
         
         <h1>You made it</h1>
-        /*
+        
   
-        <a href="admin.php?logout=1">Logout</a>
+        <a href='login.php?logout=1'>Logout</a>
     </body>
 </html>
