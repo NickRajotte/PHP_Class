@@ -9,7 +9,7 @@
 /**
  * Description of Config
  *
- * @author gforti
+ * @author nickrajotte
  */
 class Config {
     //put your code here
