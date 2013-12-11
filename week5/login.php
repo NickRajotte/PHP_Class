@@ -1,3 +1,4 @@
+<?php include 'dependency.php'; ?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -12,6 +13,15 @@ and open the template in the editor.
     <body>
         <?php
         // put your code here
+        
+            if ( Validator::loginIsValidPost() ) {
+                $_SESSION["isLoggedin"] = true; 
+             }
+            
+            if ( isset($_SESSION["isLoggedin"]) && $_SESSION["isLoggedin"] == true ) {
+                header("Location: admin.php");
+            }
+        
         ?>
         <h1>Login</h1>
         <form name="mainform" action="login.php" method="post">
